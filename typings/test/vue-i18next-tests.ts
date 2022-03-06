@@ -1,7 +1,7 @@
 import Vue, { ComponentOptions } from "vue";
-import * as i18next from "i18next";
+import i18next from "i18next";
 import VueI18Next from "../index";
-import { TranslationFunction } from "i18next";
+import { TFunction } from "i18next";
 import Component from "vue-class-component";
 
 /**
@@ -25,7 +25,7 @@ const vm = new Vue({
 
 vm.$i18n; // $ExpectType VueI18Next
 vm.$i18n.i18next; // $ExpectType i18next
-vm.$t; // $ExpectType TranslationFunction
+vm.$t; // $ExpectType TFunction
 
 @Component({
   template: "<div><a v-on:click=\"changeLanguage('de')\">DE</a></div>"
