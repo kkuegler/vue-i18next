@@ -431,8 +431,13 @@ VueI18n.prototype.t = function t (key, options) {
 };
 
 VueI18n.prototype.onI18nChanged = function onI18nChanged () {
+    var this$1 = this;
+
   console.log("onI18nChanged");
-  //this.i18nLoadedAt = new Date();
+  Vue.nextTick(function () {
+    console.log("actual onI18nChanged");
+    this$1.i18nLoadedAt = new Date();
+  });
 };
 
 Object.defineProperties( VueI18n.prototype, prototypeAccessors );

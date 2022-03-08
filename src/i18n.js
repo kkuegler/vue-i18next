@@ -50,7 +50,10 @@ export default class VueI18n {
 
   onI18nChanged() {
     console.log("onI18nChanged");
-    //this.i18nLoadedAt = new Date();
+    Vue.nextTick(() => {
+      console.log("actual onI18nChanged");
+      this.i18nLoadedAt = new Date();
+    });
   }
 }
 
