@@ -393,9 +393,8 @@ var VueI18n = function VueI18n(i18next, opts) {
   if (options.bindI18n) {
     this.i18next.on(options.bindI18n, this.onI18nChanged);
   }
-  if (options.bindStore && this.i18next.store) {
-    this.i18next.store.on(options.bindStore, this.onI18nChanged);
-  }
+  if (options.bindStore && this.i18next.store) ;
+  this.waiting = false;
 
   this.resetVM({ i18nLoadedAt: new Date() });
 };
@@ -403,6 +402,7 @@ var VueI18n = function VueI18n(i18next, opts) {
 var prototypeAccessors = { i18nLoadedAt: { configurable: true } };
 
 VueI18n.prototype.resetVM = function resetVM (data) {
+  console.log("reset vm");
   var oldVM = this._vm;
   var ref = Vue.config;
     var silent = ref.silent;
@@ -426,13 +426,22 @@ VueI18n.prototype.t = function t (key, options) {
   return this.i18next.t(key, options);
 };
 
+
 VueI18n.prototype.onI18nChanged = function onI18nChanged () {
     var this$1 = this;
 
   console.log("onI18nChanged");
-  Vue.nextTick(function () {
-    console.log("actual onI18nChanged");
-    this$1.i18nLoadedAt = new Date();
+  if (this.waiting) {
+    console.log("already waiting");
+    return;
+  }
+  this.waiting = true;
+  setTimeout(function () {
+    Vue.nextTick(function () {
+      this$1.waiting = false;
+      console.log("actual onI18nChanged");
+      this$1.i18nLoadedAt = new Date();
+    }, 1000 * Math.random());
   });
 };
 

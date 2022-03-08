@@ -19,13 +19,15 @@ export default class VueI18n {
       this.i18next.on(options.bindI18n, this.onI18nChanged);
     }
     if (options.bindStore && this.i18next.store) {
-      this.i18next.store.on(options.bindStore, this.onI18nChanged);
+      //this.i18next.store.on(options.bindStore, this.onI18nChanged);
     }
+    this.waiting = false;
 
     this.resetVM({ i18nLoadedAt: new Date() });
   }
 
   resetVM(data) {
+    console.log("reset vm");
     const oldVM = this._vm;
     const { silent } = Vue.config;
     Vue.config.silent = true;
@@ -48,11 +50,20 @@ export default class VueI18n {
     return this.i18next.t(key, options);
   }
 
+
   onI18nChanged() {
     console.log("onI18nChanged");
-    Vue.nextTick(() => {
-      console.log("actual onI18nChanged");
-      this.i18nLoadedAt = new Date();
+    if (this.waiting) {
+      console.log("already waiting");
+      return;
+    }
+    this.waiting = true;
+    setTimeout(() => {
+      Vue.nextTick(() => {
+        this.waiting = false;
+        console.log("actual onI18nChanged");
+        this.i18nLoadedAt = new Date();
+      }, 1000 * Math.random());
     });
   }
 }
