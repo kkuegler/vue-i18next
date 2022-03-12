@@ -8,7 +8,7 @@ This library is a simple wrapper for [i18next](https://www.i18next.com), simplif
 
 ## Installation
 ```bash
-npm install https://github.com/kkuegler/vue-i18next/archive/refs/tags/vue2-next.tar.gz
+npm install https://github.com/kkuegler/vue-i18next/releases/download/vue2-next/dotbase-vue-i18next-1.0.4.tgz
 ```
 
 ## Initialisation
