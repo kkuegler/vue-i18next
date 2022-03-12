@@ -27,7 +27,7 @@ declare module "vue/types/options" {
 
 interface VueI18NextOptions {
     i18next: i18n;
-    rerenderOn?: ('languageChanged' | 'loaded' | 'added' | 'removed' | 'loaded')[];
+    rerenderOn?: ('initialized' | 'languageChanged' | 'loaded' | 'added' | 'removed')[];
 }
 
 export default function install(Vue: typeof _Vue, {
@@ -38,9 +38,29 @@ export default function install(Vue: typeof _Vue, {
     // the observable (internally) tracks which Vue instances use translations and will automatically 
     // trigger re-renders by Vue when the value of 'lastI18nChange' changes
     const changeTracker = Vue.observable({ lastI18nChange: new Date() });
-    const invalidate: () => void = () => changeTracker.lastI18nChange = new Date();
     const usingTranslation: () => void = () => changeTracker.lastI18nChange;
-    rerenderOn.forEach(event => i18next.on(event, invalidate))
+    const invalidate: () => void = () => changeTracker.lastI18nChange = new Date();
+    rerenderOn.forEach(event => {
+        console.log("event reg", event)
+        switch (event) {
+            case 'added':
+            case 'removed':
+                if (i18next.store) {
+                    i18next.store.on(event, () => {
+                        console.log("store", event);
+                        invalidate();
+                    });
+                }
+                i18next.on(event, () => {
+                    console.log("nonstore", event);
+                    invalidate();
+                });
+                break;
+            default:
+                i18next.on(event, invalidate)
+                break;
+        }
+    })
 
     Vue.mixin({
         beforeCreate() {
