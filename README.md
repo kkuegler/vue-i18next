@@ -5,6 +5,12 @@
 
 This library is a simple wrapper for [i18next](https://www.i18next.com), simplifying its use in Vue.
 
+
+## Installation
+```bash
+npm install https://github.com/kkuegler/vue-i18next/archive/refs/tags/vue2-next.tar.gz
+```
+
 ## Initialisation
 
 ```typescript
