@@ -1,7 +1,7 @@
 {
   "name": "@dotbase/vue-i18next",
   "description": "i18next integration for Vue",
-  "version": "1.0.4",
+  "version": "1.0.4-alpha.1",
   "author": "dot.base <movebase@charite.de> (https://movebase.de)",
   "license": "MIT",
   "repository": {
@@ -30,5 +30,9 @@
   },
   "devDependencies": {
     "typescript": "^4.1.3"
-  }
+  },
+  "files": [
+    "dist/**/*",
+    "types/**/*"
+  ]
 }
