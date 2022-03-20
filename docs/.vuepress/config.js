@@ -43,7 +43,7 @@ module.exports = ctx => ({
               '/guide/single-file-component.md',
             ]
           },
-          '/upgrade.md',
+          '/migration.md',
         ]
       }
     }

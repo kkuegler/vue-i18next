@@ -1,4 +1,4 @@
-# Upgrade
+# Migration
 
 ## From [@panter/vue-i18next](https://panter.github.io/vue-i18next/)
 This package has some breaking changes compared to the @panter version.
