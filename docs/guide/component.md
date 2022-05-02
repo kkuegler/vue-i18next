@@ -1,6 +1,6 @@
 # Component based localization
 
-In general, locale info (e.g. `locale`,`messages`, etc) is set in the `i18next` instance and passed to the vue-i18next Vue plugin during [initialization](http://localhost:8080/vue-i18next/guide/started.html#setup).
+In general, locale info (e.g. `locale`,`messages`, etc) is set in the `i18next` instance and passed to the i18next-vue Vue plugin during [initialization](./started.md#setup).
 
 After that you can translate using `$t` or `this.$t` in Vue components. You can also manage locale info for each component separately, which might be more convenient due to Vue's component oriented design.
 
@@ -21,7 +21,7 @@ i18next.init({
   },
 });
 
-const i18n = new VueI18next(i18next);
+const i18n = new I18nextVue(i18next);
 
 const Component1 = {
   template: `

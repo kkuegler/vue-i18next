@@ -1,7 +1,7 @@
 const pkg = require('../../package.json');
 
 module.exports = ctx => ({
-  base: '/vue-i18next/',
+  base: '/i18next-vue/',
   title: pkg.name,
   description: pkg.description,
 
@@ -10,7 +10,7 @@ module.exports = ctx => ({
   ],
   theme: '@vuepress/vue',
   themeConfig: {
-    repo: 'dot-base/vue-i18next',
+    repo: 'i18next/i18next-vue',
     editLinks: true,
     docsDir: 'docs',
     locales: {
@@ -26,7 +26,7 @@ module.exports = ctx => ({
           },
           {
             text: 'Release Notes',
-            link: 'https://github.com/dot-base/vue-i18next/releases'
+            link: 'https://github.com/i18next/i18next-vue/releases'
           }
         ],
         sidebar: [

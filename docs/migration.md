@@ -9,7 +9,7 @@ This package has some breaking changes compared to the @panter version.
 - The `v-waitForT` directive has been removed. Potentially use `v-if="$i18next.initialized"` or hold off mounting Vue until i18next has been initialized:
 ```js
 const i18nInitialized = i18next.init({ ... });
-Vue.use(VueI18Next, { i18next });
+Vue.use(I18NextVue, { i18next });
 i18nInitialized.then(() => {
     new Vue({
         render: h => h(App),
@@ -32,7 +32,7 @@ new Vue({
 to
 ```js
 i18next.init(...);
-Vue.use(VueI18Next, { i18next }); // pass in an object with your i18next instance
+Vue.use(I18NextVue, { i18next }); // pass in an object with your i18next instance
 new Vue({
   ... // no 'i18n' option anymore
 }).$mount('#app')
